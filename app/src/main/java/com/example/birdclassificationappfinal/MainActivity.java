@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 maxPos = i;
             }
         }
-        String[] classes = {"WHITE THROATED BEE EATER", "WOODLAND KINGFISHER", "YELLOW CACIQUE"};
+        String[] classes = {"WHITE THROATED BEE EATER", "WOODLAND KINGFISHER", "YELLOW CACIQUEE"};
         result.setText(classes[maxPos]);
 
         // Releases model resources if no longer used here to added here.
