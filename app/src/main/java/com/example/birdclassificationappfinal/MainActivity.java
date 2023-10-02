@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.birdclassificationappfinal.database.BirdsDataSource;
 import com.example.birdclassificationappfinal.ml.Birdfinal;
 
 import org.tensorflow.lite.DataType;
@@ -33,10 +34,15 @@ public class MainActivity extends AppCompatActivity {
     TextView result;
     int imageSize = 224;
 
+    private BirdsDataSource birdsDataSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        birdsDataSource = new BirdsDataSource(this);
+        birdsDataSource.open();
 
         camera = findViewById(R.id.button);
         gallery = findViewById(R.id.button2);
@@ -107,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
         String[] classes = {"WHITE THROATED BEE EATER", "WOODLAND KINGFISHER", "YELLOW CACIQUE"};
         result.setText(classes[maxPos]);
+        birdsDataSource.insertDataBirdsFeedback(classes[maxPos],"This is accurate");
 
         // Releases model resources if no longer used here to added here.
         model.close();
